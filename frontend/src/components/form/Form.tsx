@@ -22,7 +22,6 @@ interface FieldFormProps {
 const FieldForm: React.FC<FieldFormProps> = ({ setIsHome }) => {
   type FormValues = z.infer<typeof formSchema>;
   const storedInputs = localStorage.getItem("inputs");
-  if (storedInputs) console.log(JSON.parse(storedInputs).inputs[0].value);
 
   const defaultValues: Partial<FormValues> = {
     inputs: [
