@@ -2,6 +2,7 @@ import cv2
 import HandTrackingModule as htm
 import pyperclip
 import os
+import time
 
 current, previous = "", ""
 
@@ -18,6 +19,8 @@ def finger_tracker(stored_values):
         detector = htm.handDetector(detectionCon=0.75)
 
         tipIds = [4, 8, 12, 16, 20]
+
+        startTime = None
 
         while True:
             success, img = cap.read()
@@ -50,14 +53,20 @@ def finger_tracker(stored_values):
 
                 # print(fingers)
                 totalFingers = fingers.count(1)
-                # print(totalFingers)
                 stored_value = stored_values[totalFingers]
-                current = stored_value
-                if current != previous:
-                    previous = current
-                    os.system(f"osascript -e 'display notification \"Current Copy: {current}\"'")
-                    pyperclip.copy(stored_value)
-                    print(stored_value)
+
+                if current != stored_value:
+                    if startTime is None:
+                        startTime = time.time()  # Start the timer
+                    elif time.time() - startTime >= 1:  # Check if 2 seconds have passed
+                        previous = current
+                        current = stored_value
+                        os.system(f"osascript -e 'display notification \"Current Copy: {current}\"'")
+                        pyperclip.copy(stored_value)
+                        print(stored_value)
+                else:
+                    startTime = None  # Reset the timer if the gesture is the same
+
             cv2.imshow("Image", img)
             cv2.waitKey(1)
 
