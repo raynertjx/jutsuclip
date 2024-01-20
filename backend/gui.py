@@ -55,49 +55,51 @@ def load_values(entries):
 
 # Create the main window
 root = tk.Tk()
-root.title("Text Box GUI")
+root.title("JutsuClip")
+root.minsize(580, 300)
+root.eval('tk::PlaceWindow . center')
 
 # Create labels
-label0 = tk.Label(root, text="Label 0:")
-label1 = tk.Label(root, text="Label 1:")
-label2 = tk.Label(root, text="Label 2:")
-label3 = tk.Label(root, text="Label 3:")
-label4 = tk.Label(root, text="Label 4:")
-label5 = tk.Label(root, text="Label 5:")
+label0 = tk.Label(root, text="Label 0:", padx=5)
+label1 = tk.Label(root, text="Label 1:", padx=5)
+label2 = tk.Label(root, text="Label 2:", padx=5)
+label3 = tk.Label(root, text="Label 3:", padx=5)
+label4 = tk.Label(root, text="Label 4:", padx=5)
+label5 = tk.Label(root, text="Label 5:", padx=5)
 
 # Position labels using the grid layout
-label0.grid(row=0, column=0, padx=10, pady=5, sticky=tk.E)
-label1.grid(row=1, column=0, padx=10, pady=5, sticky=tk.E)
-label2.grid(row=2, column=0, padx=10, pady=5, sticky=tk.E)
-label3.grid(row=3, column=0, padx=10, pady=5, sticky=tk.E)
-label4.grid(row=4, column=0, padx=10, pady=5, sticky=tk.E)
-label5.grid(row=5, column=0, padx=10, pady=5, sticky=tk.E)
+label0.grid(row=0, column=0, padx=5, pady=5, sticky=tk.E)
+label1.grid(row=1, column=0, padx=5, pady=5, sticky=tk.E)
+label2.grid(row=2, column=0, padx=5, pady=5, sticky=tk.E)
+label3.grid(row=3, column=0, padx=5, pady=5, sticky=tk.E)
+label4.grid(row=4, column=0, padx=5, pady=5, sticky=tk.E)
+label5.grid(row=5, column=0, padx=5, pady=5, sticky=tk.E)
 
 # Create six entry widgets (text boxes)
-entry1 = tk.Entry(root, width=30)
-entry2 = tk.Entry(root, width=30)
-entry3 = tk.Entry(root, width=30)
-entry4 = tk.Entry(root, width=30)
-entry5 = tk.Entry(root, width=30)
-entry6 = tk.Entry(root, width=30)
+entry1 = tk.Entry(root, width=50)
+entry2 = tk.Entry(root, width=50)
+entry3 = tk.Entry(root, width=50)
+entry4 = tk.Entry(root, width=50)
+entry5 = tk.Entry(root, width=50)
+entry6 = tk.Entry(root, width=50)
 entries = [entry1, entry2, entry3, entry4, entry5, entry6]
 
 load_values(entries)
 
 # Position the entry widgets using the grid layout
-entry1.grid(row=0, column=1, padx=10, pady=5, sticky=tk.W)
-entry2.grid(row=1, column=1, padx=10, pady=5, sticky=tk.W)
-entry3.grid(row=2, column=1, padx=10, pady=5, sticky=tk.W)
-entry4.grid(row=3, column=1, padx=10, pady=5, sticky=tk.W)
-entry5.grid(row=4, column=1, padx=10, pady=5, sticky=tk.W)
-entry6.grid(row=5, column=1, padx=10, pady=5, sticky=tk.W)
+entry1.grid(row=0, column=1, pady=5, sticky=tk.W)
+entry2.grid(row=1, column=1, pady=5, sticky=tk.W)
+entry3.grid(row=2, column=1, pady=5, sticky=tk.W)
+entry4.grid(row=3, column=1, pady=5, sticky=tk.W)
+entry5.grid(row=4, column=1, pady=5, sticky=tk.W)
+entry6.grid(row=5, column=1, pady=5, sticky=tk.W)
 
 # Create a button to trigger the get_values function
-button = tk.Button(root, text="Save Values", command=save_values)
-button.grid(row=6, column=1, pady=10)
+button = tk.Button(root, text="Save Values", command=save_values, width=20, padx=5)
+button.grid(row=6, column=1, padx=10, pady=5)
 
-button = tk.Button(root, text="Launch Camera", command=fc.finger_tracker(get_values()))
-button.grid(row=8, column=1, pady=10)
+button = tk.Button(root, text="Launch Camera", command=fc.finger_tracker(get_values()), width=20, padx=5)
+button.grid(row=8, column=1, padx=10, pady=5)
 
 # Start the Tkinter event loop
 root.mainloop()
