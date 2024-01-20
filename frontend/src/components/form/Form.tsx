@@ -5,7 +5,6 @@ import { useFieldArray, useForm } from "react-hook-form";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
 import { Textarea } from "../ui/textarea";
 
 const formSchema = z.object({
@@ -16,10 +15,13 @@ const formSchema = z.object({
   ),
 });
 
-export function FieldForm() {
+interface FieldFormProps {
+  setIsHome: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const FieldForm: React.FC<FieldFormProps> = ({ setIsHome }) => {
   type FormValues = z.infer<typeof formSchema>;
   const storedInputs = localStorage.getItem("inputs");
-  // console.log(JSON.parse(storedInputs));
   if (storedInputs) console.log(JSON.parse(storedInputs).inputs[0].value);
 
   const defaultValues: Partial<FormValues> = {
@@ -50,6 +52,7 @@ export function FieldForm() {
     // ✅ This will be type-safe and validated.
     console.log(values);
     localStorage.setItem("inputs", JSON.stringify(values));
+    setIsHome(false);
   }
 
   return (
@@ -73,4 +76,6 @@ export function FieldForm() {
       </form>
     </Form>
   );
-}
+};
+
+export default FieldForm;
