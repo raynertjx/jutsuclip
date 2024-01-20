@@ -1,21 +1,14 @@
 ![JutsuClip](./jutsuclip.png)
 
-## Gedong CS Boys's Submission for Hack &amp; Roll 2024.
+## Submission for Hack &amp; Roll 2024.
 
-Ever wanted to be a ninja and command texts at your fingertips ? 
-Worry no more as Justsu Clip allows you to use your hand signs to "summon" your very own set of "justsu" or texts.
-
-Gone are the days where you need to slowly copy and paste small chunks of information as Jutsu does just that for you
-
+Unleash the power of JutsuClip, where hand signs summon your personalized text "jutsu" instantly. Say goodbye to tedious copying and pasting - navigate information effortlessly and master the art of digital agility with JutsuClip!
 
 ## Set up
 
-1) To run the project, first do
-`pip install -r requirements.txt`
+1) To download the relevant packages, first do `pip install -r requirements.txt`.
 
-2) Run the 
-`gui.py` file in the backend
-
+2) Run the `gui.py` file using `python3 gui.py`. 
 
 ### Disclaimers
 
