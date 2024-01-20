@@ -3,9 +3,12 @@ import HandTrackingModule as htm
 import pyperclip
 import os
 
+current, previous = "", ""
 
 def finger_tracker(stored_values):
     def capture_video():
+        global current
+        global previous
         wCam, hCam = 640, 480
 
         cap = cv2.VideoCapture(0)
