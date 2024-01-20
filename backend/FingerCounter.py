@@ -9,7 +9,6 @@ cap = cv2.VideoCapture(0)
 cap.set(3, wCam)
 cap.set(4, hCam)
 
-pTime = 0
 
 detector = htm.handDetector(detectionCon=0.75)
 
@@ -47,9 +46,6 @@ while True:
         # print(fingers)
         totalFingers = fingers.count(1)
         print(totalFingers)
-
-    cTime = time.time()
-    fps = 1 / (cTime - pTime)
-    pTime = cTime
+        
     cv2.imshow("Image", img)
     cv2.waitKey(1)
