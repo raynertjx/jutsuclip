@@ -1,8 +1,9 @@
-import pyperclip
 import cv2
 import HandTrackingModule as htm
+import pyperclip
 
-def temp(stored_values):
+
+def finger_tracker(stored_values):
     def capture_video():
         wCam, hCam = 640, 480
 
@@ -52,4 +53,5 @@ def temp(stored_values):
 
             cv2.imshow("Image", img)
             cv2.waitKey(1)
+
     return capture_video

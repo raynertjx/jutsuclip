@@ -1,5 +1,6 @@
-import tkinter as tk
 import os
+import tkinter as tk
+
 import FingerCounter as fc
 
 file_path = "values.txt"
@@ -95,7 +96,7 @@ entry6.grid(row=5, column=1, padx=10, pady=5, sticky=tk.W)
 button = tk.Button(root, text="Save Values", command=save_values)
 button.grid(row=6, column=1, pady=10)
 
-button = tk.Button(root, text="Launch Camera", command=fc.temp(get_values()))
+button = tk.Button(root, text="Launch Camera", command=fc.finger_tracker(get_values()))
 button.grid(row=8, column=1, pady=10)
 
 # Start the Tkinter event loop
