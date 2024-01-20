@@ -1,6 +1,7 @@
 import cv2
 import HandTrackingModule as htm
 import pyperclip
+import os
 
 
 def finger_tracker(stored_values):
@@ -48,9 +49,12 @@ def finger_tracker(stored_values):
                 totalFingers = fingers.count(1)
                 # print(totalFingers)
                 stored_value = stored_values[totalFingers]
-                print(stored_value)
-                pyperclip.copy(stored_value)
-
+                current = stored_value
+                if current != previous:
+                    previous = current
+                    os.system(f"osascript -e 'display notification \"Current Copy: {current}\"'")
+                    pyperclip.copy(stored_value)
+                    print(stored_value)
             cv2.imshow("Image", img)
             cv2.waitKey(1)
 
