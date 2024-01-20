@@ -7,13 +7,13 @@ const WebcamCapture = () => {
 
     const capture = React.useCallback(() => {
         const imageSrc = webcamRef.current.getScreenshot();
-        const imageData = imageSrc.replace(/^data:image\/[a-z]+;base64,/, "");
-        fetch('http://localhost:5001/test', {
+        const imageData = imageSrc.split(',')[1];
+        fetch('http://localhost:5001/process_image', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ image: imageData })
+            body: JSON.stringify({ image: imageData})
         })
         .then(response => response.json())
         .then(data => setResult(data.totalFingers))
@@ -23,7 +23,7 @@ const WebcamCapture = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             capture();
-        }, 5000);
+        }, 1000);
         return () => clearInterval(interval);
     }, [capture]);
 

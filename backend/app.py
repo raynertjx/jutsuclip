@@ -18,14 +18,15 @@ def test_route():
 @cross_origin()
 @app.route('/process_image', methods=['GET', 'POST', 'OPTIONS'])
 def process_image():
-    print("request receiced")
+    print("request received")
     # Get the image from the request
     try:
-        data = request.json['image']
-        if not data or 'image' not in data:
+        data = request.get_json()
+        image_data = data.get('image')
+        if not image_data:
             raise ValueError("No image data in request")
         # Convert the base64 string to a numpy array
-        decoded_data = base64.b64decode(data)
+        decoded_data = base64.b64decode(image_data)
         np_data = np.frombuffer(decoded_data, np.uint8)
         img = cv2.imdecode(np_data, cv2.IMREAD_COLOR)
         detector = htm.handDetector(detectionCon=0.75)
@@ -65,9 +66,12 @@ def process_image():
 
             # Return the results
             return jsonify({'totalFingers': totalFingers, 'handType': handType})
+        else:
+            # Return a default response if no hand is detected
+            return jsonify({'message': 'No hand detected', 'totalFingers': 0, 'handType': 'None'})
     except Exception as e:
         print(e)
-        return jsonify({'error': str(e)}), 400
+        return jsonify({'error': str(e)})
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)
