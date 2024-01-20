@@ -7,12 +7,13 @@ const WebcamCapture = () => {
 
     const capture = React.useCallback(() => {
         const imageSrc = webcamRef.current.getScreenshot();
-        fetch('http://localhost:5000/test', {
+        const imageData = imageSrc.replace(/^data:image\/[a-z]+;base64,/, "");
+        fetch('http://localhost:5001/test', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ image: imageSrc })
+            body: JSON.stringify({ image: imageData })
         })
         .then(response => response.json())
         .then(data => setResult(data.totalFingers))
