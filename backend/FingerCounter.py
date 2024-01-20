@@ -1,6 +1,4 @@
-import os
-import time
-
+import pyperclip
 import cv2
 import HandTrackingModule as htm
 
@@ -48,7 +46,9 @@ def temp(stored_values):
                 # print(fingers)
                 totalFingers = fingers.count(1)
                 # print(totalFingers)
-                print(stored_values[totalFingers])
+                stored_value = stored_values[totalFingers]
+                print(stored_value)
+                pyperclip.copy(stored_value)
 
             cv2.imshow("Image", img)
             cv2.waitKey(1)
