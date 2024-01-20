@@ -1,18 +1,19 @@
-import React, { FC } from "react";
-import { FieldForm } from "./form/Form";
+import React, { useState, FC } from "react";
+import Home from "./Home";
+import WebcamCapture from "./Webcam";
 
 interface LayoutProps {}
 
 const Layout: FC<LayoutProps> = () => {
+  const [isHome, setIsHome] = useState(true);
+
   return (
     <div className="flex justify-center">
-      <div className="w-3/5">
-        <div className="pb-4">
-          <h1 className="text-2xl">JutsuClip</h1>
-          <p>Unleash the power of seamless productivity with JutsuClip!</p>
-        </div>
-        <FieldForm />
-      </div>
+      {isHome ? (
+        <Home setIsHome={setIsHome} />
+      ) : (
+        <WebcamCapture setIsHome={setIsHome} />
+      )}
     </div>
   );
 };
